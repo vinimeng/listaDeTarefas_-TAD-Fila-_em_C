@@ -19,10 +19,11 @@ int main() {
     setlocale(LC_ALL, "Portuguese");
     fila fl;
     int escolha = 0;
-    char tmp;
+    char tmp[3];
     while (escolha != 4) {
         textoInicio();
-        scanf("%d%c", &escolha, &tmp);
+        fgets(tmp, 3, stdin);
+        escolha = atoi(tmp);
         switch (escolha) {
             case 1:
                 adicionar(&fl);
