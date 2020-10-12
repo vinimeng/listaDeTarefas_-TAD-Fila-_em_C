@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <locale.h>
 #include "fila.h"
+#if defined(_WIN32) || defined(_WIN64)
+    #include <windows.h>
+#endif
+#if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
+    #include <locale.h>
+#endif
 
 void textoInicio() {
     printf("Programa para lista de tarefas by Vinícius Meng\n");
@@ -16,7 +19,13 @@ void textoInicio() {
 }
 
 int main() {
-    setlocale(LC_ALL, "Portuguese");
+    #if defined(_WIN32) || defined(_WIN64)
+        SetConsoleCP(1252);
+        SetConsoleOutputCP(1252);
+    #endif
+    #if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
+        setlocale(LC_ALL, "Portuguese");
+    #endif
     fila fl;
     int escolha = 0;
     char tmp[3];
