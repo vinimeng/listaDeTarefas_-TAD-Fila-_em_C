@@ -36,7 +36,9 @@ void remover(fila *filaRemover) {
         if (filaRemover->primeiro.ultimo == '\0') {
             filaRemover->inicializada = 'N';
         } else {
+            nodo *remover = filaRemover->primeiro.posterior;
             filaRemover->primeiro = *filaRemover->primeiro.posterior;
+            free(remover);
         }
         printf("Tarefa removida com sucesso!\n\n");
     } else {
